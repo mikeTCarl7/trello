@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ListsService } from './services/lists.service';
-import { List } from './models/list';
+import { ListsService } from '../../services/lists.service';
+import { List } from '../../models/list';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.css']
 })
+export class BoardComponent implements OnInit {
 
-export class AppComponent implements OnInit {
-  title = 'app';
 
   lists: Array<List>;
   list: List;
   selectedList: List;
+  selectedCard: any;
 
   constructor(private svc: ListsService) { }
 
-  ngOnInit() {
 
-    // this.svc.createList();
+  ngOnInit() {
   }
+
   addCardToSelected() {
     const card = 'new card';
 
@@ -73,4 +72,11 @@ export class AppComponent implements OnInit {
         console.log('new selected list ', this.selectedList);
       });
     }
+
+    selectCard(card) {
+      this.selectedCard = card;
+      console.log(this.selectedCard);
+
+    }
+
 }

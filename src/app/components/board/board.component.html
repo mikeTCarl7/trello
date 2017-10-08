@@ -1,0 +1,89 @@
+
+
+<!-- <div> -->
+
+  
+  
+  
+
+
+  <button class="btn btn-success" (click)="createList()">Create New List</button>
+  <button class="btn btn-success" (click)="getLists()">Get List</button>
+  
+  
+
+
+<div *ngIf="selectedList">
+    <button class="btn btn-success" (click)="updateList(selectedList)">Update List</button>
+    <button class="btn btn-danger" (click)="deleteList(selectedList.id)">Delete List</button>
+    <button class="btn btn-success" (click)="addCardToSelected()">Add Card to selected</button>
+</div>
+
+
+<!-- <div class="container py-3">
+  <div class="card view overlay hm-red-strong hoverable" *ngFor="let list of lists" style="width: 20rem;" (click)="selectList(list)">
+
+    <li class="row thumbnail">
+      <div class="col-md-4">
+        <div class="col-md-8 px-3">
+          <div class="card-block px-3 dark-hover">
+              <h4 class="card-title">{{list.name}}</h4>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">{{list.name}}</a>
+              <p class="card-text">{{list.id}}</p>
+          </div>
+          <div class="card-block px-3" *ngFor="let card of list.cards" [class.selected]="card === selectedCard" (click)="selectCard(card)">
+              <h4 class="card-title">{{card}}</h4>
+          </div>
+        </div>
+      </div>
+      <ul>  </ul>
+    </li>
+
+  </div>
+</div> -->
+
+  <!-- <div class="app flex-row">    -->
+      <!-- <div class="container contain">  -->
+          <div class="scrolling-wrapper-flexbox contain cStyle">
+              <div class="card col-md-3" *ngFor="let list of lists" [class.listSelected]="list === selectedList"(click)="selectList(list)" flex="33" flex-xs="100">
+                  <div class="card-block card-color">
+                      <h4 class="card-title">Name: {{list.name}} </h4>
+                      <p class="card-text"> {{list.id}}</p>
+                      <div class="card-block px-3" *ngFor="let card of list.cards" [class.cardSelected]="card === selectedCard && list === selectedList" (click)="selectCard(card)">
+                             <h4 class="card-title">{{card}}</h4>
+                              <ul></ul>
+                      </div>
+                      <div class="divider"></div>
+                  </div>
+                <br />    
+              </div>
+              <br />
+          </div>
+      <!-- </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+
+
+    <!-- <body ng-app="ImageDemo">
+        <div ng-controller="Demo.controller">
+          <div>
+            <ul id="navlist">
+              <li ng-repeat="i in product.images">
+                <img class="thumbnail" ng-src="{{i.image}}"> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </body> -->
+
+
+
+
+
+<!-- 
+<ul class="lists">
+    <li *ngFor="let list of lists" [class.selected]="list === selectedList" (click)="selectList(list)">
+        <span class="badge">{{list.name}}</span>{{list.name}}
+    </li>
+  </ul> -->
+<!-- [class.selected]="list === selectedList"  -->
