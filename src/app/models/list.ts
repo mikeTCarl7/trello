@@ -4,16 +4,14 @@ export class List {
         pos: number;
         cards: Array<any>;
         id: number;
-        constructor() {}
+        isEdit: boolean;
+        constructor() {
+            this.isEdit = false;
+        }
 
     }
 
 
 
-  export  class Container {
-        constructor(public id: number, public name: string, public widgets: Array<Widget>) {}
-      }
 
-export class Widget {
-        constructor(public name: string) {}
-      }
+

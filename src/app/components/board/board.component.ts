@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ListsService } from '../../services/lists.service';
 import { List } from '../../models/list';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { Container} from '../../models/container';
 import { Widget } from '../../models/widget';
 
@@ -18,37 +18,44 @@ export class BoardComponent implements OnInit {
   lists: Array<List>;
   list: List;
   selectedList: List;
+  // prevSelectedList: List;
   selectedCard: any;
 
   dropped: any;
-  isEdit: any;
+  isEdit: any = false;
   closeResult: string;
+  card: any;
+  public modalRef: NgbModalRef;
 
   dragOperation: boolean = false;
-
-  // containers: Array<Container> = [
-  //         new Container(1, 'Container 1', [new Widget('1'), new Widget('2')]),
-  //         new Container(2, 'Container 2', [new Widget('3'), new Widget('4')]),
-  //         new Container(3, 'Container 3', [new Widget('5'), new Widget('6')])
-  //     ];
-
-  //     widgets: Array<Widget> = [];
 
       cards: Array<any> = [];
 
   constructor(private svc: ListsService, private modalSvc: NgbModal) { }
 
     open(content) {
-      this.modalSvc.open(content, {windowClass: 'dark-modal'});
+      this.modalRef = this.modalSvc.open(content);
     }
   ngOnInit() {
+  }
+  toggleIsEdit() {
+    this.isEdit = !this.isEdit;
+    console.log('isEdit: ', this.isEdit );
+  }
+
+  onSubmit(){
+    this.selectedCard = this.card;
+    console.log(this.selectedCard);
+    this.addCardToSelected(this.selectedCard);
+    this.modalRef.close();
   }
 
   addCardToSelected(card) {
     // const card = 'new card';
     console.log(card);
-
     this.selectedList.cards.push(card);
+    this.selectedList.isEdit = true;
+    console.log('just dropped card');
   }
 
   selectList(list: List) {
@@ -80,6 +87,7 @@ export class BoardComponent implements OnInit {
         this.getList(list.id);
       });
       // this.getList(list.id);
+      this.selectedList.isEdit = false;
       console.log('just tried to update list');
     }
 
@@ -111,21 +119,23 @@ export class BoardComponent implements OnInit {
       console.log(e.dragData.card);
       console.log(JSON.stringify(e.dragData[0]));
       this.addCardToSelected(e.dragData[0]);
+      console.log('just droped card');
 
   }
 
-  onRowClick(event, id) {
-    console.log(event.target.outerText, id);
+  editCard(event, id, index) {
+    console.log(event.target.outerText, id, index);
+    this.selectedList.cards[index] = event.target.outerText;
+    this.selectedList.isEdit = true;
+    // console.log('whut');
+    console.log(this.selectedList);
+    this.isEdit = true;
   }
 
-
-
-
-      addTo($event: any) {
+  addTo($event: any) {
           if ($event) {
               this.cards.push($event.dragData);
+              console.log('about to drop card');
           }
       }
-
-
 }

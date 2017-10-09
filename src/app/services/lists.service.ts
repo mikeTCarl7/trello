@@ -42,6 +42,7 @@ export class ListsService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     const input = JSON.stringify(list);
+    //constant below is to trim unneaded properties prior to the api call
     const obj: any = {
         name: list.name,
         pos: list.pos,
