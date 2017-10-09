@@ -54,22 +54,41 @@
     background-color: green;
    }
 
-   
+   .cardPadding{
+       padding-left: 5px;
+       padding-right: 10px
+   }
    
 
    .scrolling-wrapper-flexbox {
     display: flex;
+    /* flex */
+    flex: 1 1 0;
     flex-wrap: nowrap;
+    flex-direction: row;
     overflow-x: auto;
-    width: 95%;
-  }
-  .cStyle{
-      color: rgba(40, 72, 109, 0.49);
+    padding-left: 5px;
+
+    -webkit-columns: 20em;
+    -moz-columns: 20em;
+    columns: 20em;
   }
 
-.divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
-}
+  .container {
+      /* color: green; */
+      /* padding: 10px;
+      background: radial-gradient(red, blue, red); */
+      
+  }
 
+  .board-container {
+    padding: 10px;
+    background: radial-gradient(rgba(209, 64, 28, 0.69), rgba(202, 25, 78, 0.7), rgba(209, 64, 28, 0.69));
+  }
+  .dark-modal .modal-content {
+    background-color: #292b2c;
+    color: white;
+  }
+  .dark-modal .close {
+    color: white;   
+  }

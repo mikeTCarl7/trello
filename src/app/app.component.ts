@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
   addCardToSelected() {
     const card = 'new card';
+    
 
     this.selectedList.cards.push(card);
   }

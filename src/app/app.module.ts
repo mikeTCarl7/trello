@@ -5,11 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
-
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 import { ListsService } from './services/lists.service';
 import { BoardComponent } from './components/board/board.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {DndModule} from 'ng2-dnd';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+// import {MaterialModule} from '@angular/material';
+// import {PopupModule} from 'ng2-opd-popup';
+// import { LayoutModule } from 'ng2-flex-layout';
 
 const appRoutes = [
   {path: '', component: DashboardComponent},
@@ -27,7 +32,14 @@ const appRoutes = [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    // MaterialModule,
+    // LayoutModule,
+    Ng2DragDropModule.forRoot(),
+    DndModule.forRoot(),
+    NgbModule.forRoot()
+
+    // PopupModule.forRoot()
 
   ],
   providers: [ListsService],

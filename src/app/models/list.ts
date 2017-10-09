@@ -7,3 +7,13 @@ export class List {
         constructor() {}
 
     }
+
+
+
+  export  class Container {
+        constructor(public id: number, public name: string, public widgets: Array<Widget>) {}
+      }
+
+export class Widget {
+        constructor(public name: string) {}
+      }
