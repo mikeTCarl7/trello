@@ -52,20 +52,20 @@ export class ListsService {
       return this.http.post('http://localhost:3000/api/lists/' + list.id, input, options);
     }
 
-  createList() {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+  createList(obj) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
     // console.log(list.rows[0]);
-    let n = 'mike';
-    let p = 2;
-    const obj: any = {name: n,
-      pos: p,
-      cards: ['card1', 'card2']
-    };
+    // let n = 'mike';
+    // let p = 2;
+    // const obj: any = {name: n,
+    //   pos: p,
+    //   cards: ['card1', 'card2']
+    // };
 
-    let input = JSON.stringify(obj);
+    const input = JSON.stringify(obj);
 
-    console.log();
+    // console.log();
     let me1 = '{"name":"Hello","pos":1,"cards":["Card 1","Card 2"]}';
     let me = '{"rows":[{"name":"Hello","pos":1,"cards":["Card 1","Card 2"]]}';
     // console.log(JSON.stringify(obj) + ' is the object value');

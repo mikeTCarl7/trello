@@ -1,88 +1,60 @@
 
 
-<!-- <div> -->
 
-    <ng-template>
-        <div class="modal-header">
-          <h4 class="modal-title">TItle</h4>
-        </div>
-        <div class="modal-body">
-          <div>id</div>
-        </div>
-        <div class="modal-footer">
-      
-        </div>
-      </ng-template>
-      <div class="container">
-          <div class="row">
-            <div class="col-xs-12">
-              <button class="btn btn-primary btn-sm" data-target="#loginModal" data-toggle="modal">Login</button>
-              <div class="modal" id="loginModal" tabindex="-1"></div>
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">login</h4>
-                    <div class="modal-body">
-                      <form>
-                        <div class="form-group">
-                            <label for="inputUserName">Username</label>
-                            <input type="text" class="form-control" placeholder="login username" id="inputUserName">
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-primary">Login</button>
-                      <button class="btn-primary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
+<!-- create list -->
+<div *ngIf=showCreateListForm>
+
+    <form (submit)="createList()">
+        
+                <div class="form-group">
+                    <label>List</label>
+                    <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="name">  
+                    <input type="text" [(ngModel)]="position" name="position" class="form-control" placeholder="position">  
+                    <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+
+</div>
+<button class="btn btn-primary" (click)="openCreateList()">Create List</button>
+        
+
   
-
-
-<ng-template #content let card="card" let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <form (submit)="onSubmit()">
-            
-                    <div class="form-group">
-                        <label>Name</label>
+  <!-- add card -->
+  <ng-template #content let card="card" let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form (submit)="onSubmit()">
+              
+                      <div class="form-group">
+                          <label>Name</label>
+                            
                           
-                        
-                        <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
-                    </div>
-                    <input type="submit" value="Submit" class="btn btn-success">
-          </form>
-      <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-    </div>
-  </ng-template>
-  
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-  
+                          <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
+                      </div>
+                      <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
 
 
-  <button class="btn btn-success" (click)="createList()">Create New List</button>
-  <button class="btn btn-success" (click)="getLists()">Get List</button>
+  <!-- <button class="btn btn-success" (click)="getLists()">Get List</button> -->
   
   
 
 
 <div *ngIf="selectedList">
-    <button class="btn btn-success" (click)="updateList(selectedList)">Update List</button>
-    <button class="btn btn-danger" (click)="deleteList(selectedList.id)">Delete List</button>
-    <button class="btn btn-success" (click)="addCardToSelected()">Add Card to selected</button>
+    <!-- <button class="btn btn-success" (click)="updateList(selectedList)">Update List</button> -->
+    <!-- <button class="btn btn-success" (click)="addCardToSelected()">Add Card to selected</button> -->
 </div>
 
 
@@ -113,12 +85,8 @@
       <!-- <div class="container contain">  -->
 <br />
 
-<button class="btn btn-danger" (click)="toggleIsEdit(list)"></button>
-
+<!-- <button class="btn btn-danger" (click)="toggleIsEdit(list)"></button> -->
 <br><br>
-
-
-
             <h4>Move items between multi list sortable containers</h4>
             <div class="board-container">
                 <div class="scrolling-wrapper-flexbox container" dnd-sortable-container [sortableData]="lists" [dropZones]="['container-dropZone']">
@@ -134,26 +102,32 @@
                                     </div>
                                     <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
                                                 dnd-sortable [sortableIndex]="x" [dragEnabled]="!dragOperation"
-                                                [dragData]="card" contenteditable="true" (keyup.enter)="editCard($event, card, x)" (blur)="editCard($event, card, x)" >{{card}}
-                                                
-                                                
+                                                [dragData]="card" contenteditable="true" (keyup.enter)="editCard($event, card, x)" (dblclick)="deleteCard($event, card, x)" (blur)="editCard($event, card, x)" >
+                                                {{card}}        
+                                                <button type="button" class="close pull-right" aria-label="Close" (click)="deleteCard($event, card, x)">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>                                                                                                                                        
+                                                <!-- <a class="close pull-right" type="button" (click)="deleteCard($event, card, x)">...</a> -->
                                     </div> 
-                                    <label *ngIf="!isEdit" (click)="isEdit=true" from="name">Name</label>
-                                   
+                                    
+
+                                    <!-- <label *ngIf="!isEdit" (click)="isEdit=true" from="name">Name</label> -->                                   
                                     <div class="card-footer">
                                        <a (click)="addCardToSelected()">add card</a>
                                        <button class="btn btn-primary btn-sm" (click)="open(content)">Add new card</button>
                                     </div>    
-                                </div>
+                                </div>                                                                  
+                                <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>  
                                 <div *ngIf="list.isEdit === true">
                                     <button class="btn btn-warning" (click)="updateList(list)">Save List</button>
                                 </div>                                            
 
                             </div>
+                            
                                                                            
                             
                             
-                        </div>
+                        </div>                        
                     </div>
                 </div>
                 <!-- <div class="col-sm-6">

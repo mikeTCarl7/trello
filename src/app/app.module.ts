@@ -12,6 +12,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {DndModule} from 'ng2-dnd';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NewListComponent } from './components/new-list/new-list.component';
+import { EditAndDeleteCardComponent } from './components/edit-and-delete-card/edit-and-delete-card.component';
 // import {MaterialModule} from '@angular/material';
 // import {PopupModule} from 'ng2-opd-popup';
 // import { LayoutModule } from 'ng2-flex-layout';
@@ -26,7 +28,9 @@ const appRoutes = [
     AppComponent,
     BoardComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    NewListComponent,
+    EditAndDeleteCardComponent
   ],
   imports: [
     BrowserModule,

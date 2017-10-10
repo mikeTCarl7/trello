@@ -2,8 +2,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ListsService } from '../../services/lists.service';
 import { List } from '../../models/list';
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import { Container} from '../../models/container';
-import { Widget } from '../../models/widget';
+// import { Container} from '../../models/container';
+// import { Widget } from '../../models/widget';
+import {NewListComponent} from '../new-list/new-list.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { Widget } from '../../models/widget';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./board.component.css']
 })
+
 export class BoardComponent implements OnInit {
 
 
@@ -25,25 +27,39 @@ export class BoardComponent implements OnInit {
   isEdit: any = false;
   closeResult: string;
   card: any;
+  name: any;
+  position: any;
   public modalRef: NgbModalRef;
+  public modalRef2: NgbModalRef;
+  showCreateListForm: boolean = false;
+
+  public newList: NewListComponent;
 
   dragOperation: boolean = false;
 
       cards: Array<any> = [];
 
-  constructor(private svc: ListsService, private modalSvc: NgbModal) { }
+  constructor(private svc: ListsService, private modalSvc: NgbModal, private newModalSvc: NgbModal) { }
 
     open(content) {
       this.modalRef = this.modalSvc.open(content);
     }
   ngOnInit() {
+    this.getLists();
   }
+
   toggleIsEdit() {
     this.isEdit = !this.isEdit;
     console.log('isEdit: ', this.isEdit );
   }
 
-  onSubmit(){
+  openCreateList () {
+
+    this.showCreateListForm = true;
+
+  }
+
+  onSubmit() {
     this.selectedCard = this.card;
     console.log(this.selectedCard);
     this.addCardToSelected(this.selectedCard);
@@ -65,11 +81,19 @@ export class BoardComponent implements OnInit {
   }
 
   createList() {
-      this.svc.createList().subscribe((res) => {
+// debugger
+    console.log(this.name + ' ' + ' ' + this.position);
+      const obj = {
+        name: this.name,
+        pos: this.position,
+        cards: [this.card]
+      };
+      this.svc.createList(obj).subscribe((res) => {
       console.log(res);
       this.getLists();
       });
       console.log('just tried to create a list');
+      this.showCreateListForm = false;
     }
 
     getLists() {
@@ -96,6 +120,7 @@ export class BoardComponent implements OnInit {
         console.log(res);
         this.getLists();
       });
+      // this.getLists();
       console.log('just called delete list');
     }
 
@@ -130,6 +155,11 @@ export class BoardComponent implements OnInit {
     // console.log('whut');
     console.log(this.selectedList);
     this.isEdit = true;
+  }
+
+  deleteCard(event, id, index) {
+    this.selectedList.cards.splice(index, 1);
+
   }
 
   addTo($event: any) {

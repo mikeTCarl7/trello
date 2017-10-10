@@ -84,11 +84,11 @@
   .board-container {
     padding: 10px;
     background: radial-gradient(rgba(209, 64, 28, 0.69), rgba(202, 25, 78, 0.7), rgba(209, 64, 28, 0.69));
+    
   }
-  .dark-modal .modal-content {
-    background-color: #292b2c;
-    color: white;
-  }
-  .dark-modal .close {
-    color: white;   
-  }
+
+  .threeDot:after {
+    content: '\2807';
+    font-size: 100px;
+    }
+
