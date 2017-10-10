@@ -1,6 +1,27 @@
-
-
-
+  <ng-template #changeCard let card="selectedCard" let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Card</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form (submit)="editCardFromModal()">
+                
+                        <div class="form-group">
+                            <label>Name</label>                                                          
+                            <input type="text" [(ngModel)]="selectedCard" name="selectedCard" class="form-control" placeholder="card">
+                        </div>
+                        <input type="submit" value="Submit" class="btn btn-success">
+              </form>
+              <button class="btn btn-danger" (click)=deleteCard()>Delete Card</button>
+          <!-- <p>One fine body&hellip;</p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+        </div>
+      </ng-template>
+      <button class="btn btn-primary btn-sm" (click)="openModal(changeCard)">Edit Card</button>
 <!-- create list -->
 <div *ngIf=showCreateListForm>
 
@@ -23,7 +44,7 @@
   <!-- add card -->
   <ng-template #content let card="card" let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">New Card</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -37,9 +58,8 @@
                           
                           <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
                       </div>
-                      <input type="submit" value="Submit" class="btn btn-success">
+                      <input type="submit" value="Create New Card" class="btn btn-success">
             </form>
-        <p>One fine body&hellip;</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
@@ -52,10 +72,10 @@
   
 
 
-<div *ngIf="selectedList">
+<!-- <div *ngIf="selectedList"> -->
     <!-- <button class="btn btn-success" (click)="updateList(selectedList)">Update List</button> -->
     <!-- <button class="btn btn-success" (click)="addCardToSelected()">Add Card to selected</button> -->
-</div>
+<!-- </div> -->
 
 
 <!-- <div class="container py-3">
@@ -102,11 +122,12 @@
                                     </div>
                                     <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
                                                 dnd-sortable [sortableIndex]="x" [dragEnabled]="!dragOperation"
-                                                [dragData]="card" contenteditable="true" (keyup.enter)="editCard($event, card, x)" (dblclick)="deleteCard($event, card, x)" (blur)="editCard($event, card, x)" >
+                                                [dragData]="card" contenteditable="false" [class.cardSelected]="card === selectedCard" (dblclick)="openModal(changeCard)" (click)="selectCard(card, x)" (keyup.enter)="editCard($event, card, x)" (blur)="editCard($event, card, x)" >
                                                 {{card}}        
-                                                <button type="button" class="close pull-right" aria-label="Close" (click)="deleteCard($event, card, x)">
+                                                <!-- <button type="button" class="close pull-right" aria-label="Close" (dblclick)="openModal(changeCard)">
                                                     <span aria-hidden="true">&times;</span>
-                                                  </button>                                                                                                                                        
+                                                </button> -->
+                                                                                                                                                                                                                                        
                                                 <!-- <a class="close pull-right" type="button" (click)="deleteCard($event, card, x)">...</a> -->
                                     </div> 
                                     
@@ -116,8 +137,11 @@
                                        <a (click)="addCardToSelected()">add card</a>
                                        <button class="btn btn-primary btn-sm" (click)="open(content)">Add new card</button>
                                     </div>    
-                                </div>                                                                  
-                                <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>  
+                                </div> 
+                                <div *ngIf="selectedList">
+                                        <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>      
+                                </div>                                                                 
+                                
                                 <div *ngIf="list.isEdit === true">
                                     <button class="btn btn-warning" (click)="updateList(list)">Save List</button>
                                 </div>                                            

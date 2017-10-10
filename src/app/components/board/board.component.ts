@@ -4,7 +4,7 @@ import { List } from '../../models/list';
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 // import { Container} from '../../models/container';
 // import { Widget } from '../../models/widget';
-import {NewListComponent} from '../new-list/new-list.component';
+// import {NewListComponent} from '../new-list/new-list.component';
 
 
 @Component({
@@ -32,8 +32,10 @@ export class BoardComponent implements OnInit {
   public modalRef: NgbModalRef;
   public modalRef2: NgbModalRef;
   showCreateListForm: boolean = false;
+  cardEdits: any;
+  cardPosition: number;
 
-  public newList: NewListComponent;
+  // public newList: NewListComponent;
 
   dragOperation: boolean = false;
 
@@ -43,6 +45,10 @@ export class BoardComponent implements OnInit {
 
     open(content) {
       this.modalRef = this.modalSvc.open(content);
+    }
+
+    openModal(changeCard) {
+      this.modalRef2 = this.newModalSvc.open(changeCard);
     }
   ngOnInit() {
     this.getLists();
@@ -132,11 +138,12 @@ export class BoardComponent implements OnInit {
       });
     }
 
-    selectCard(card) {
+    selectCard(card, x) {
       this.selectedCard = card;
+      this.cardPosition = x;
       console.log(this.selectedCard);
-
     }
+
 
     onItemDrop(e: any) {
       // Get the dropped data here
@@ -157,10 +164,28 @@ export class BoardComponent implements OnInit {
     this.isEdit = true;
   }
 
-  deleteCard(event, id, index) {
-    this.selectedList.cards.splice(index, 1);
+
+  editCardFromModal() {
+    console.log(this.selectedCard);
+    this.modalRef2.close();
+
+    // console.log(event.target.outerText, id, index);
+    this.selectedList.cards[this.cardPosition] = this.selectedCard;
+    this.selectedList.isEdit = true;
+    // this.selectedList.isEdit = true;
+    // // console.log('whut');
+    // console.log(this.selectedList);
+    // this.isEdit = true;
+  }
+
+  deleteCard() {
+    this.selectedList.cards.splice(this.cardPosition, 1);
+    this.selectedList.isEdit = true; //turns on the save button 
+    this.modalRef2.close();
 
   }
+
+
 
   addTo($event: any) {
           if ($event) {

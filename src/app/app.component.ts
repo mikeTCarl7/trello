@@ -35,12 +35,12 @@ export class AppComponent implements OnInit {
     console.log(JSON.stringify(this.selectedList.cards));
   }
 
-  createList() {
-      this.svc.createList().subscribe((res) => {
-      console.log(res);
-      });
-      console.log('just tried to create a list');
-    }
+  // createList() {
+  //     this.svc.createList().subscribe((res) => {
+  //     console.log(res);
+  //     });
+  //     console.log('just tried to create a list');
+  //   }
 
     getLists() {
       this.svc.getLists().subscribe(res => {

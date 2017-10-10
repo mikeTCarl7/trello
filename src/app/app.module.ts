@@ -12,7 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {DndModule} from 'ng2-dnd';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NewListComponent } from './components/new-list/new-list.component';
+// import { NewListComponent } from './components/new-list/new-list.component';
 import { EditAndDeleteCardComponent } from './components/edit-and-delete-card/edit-and-delete-card.component';
 // import {MaterialModule} from '@angular/material';
 // import {PopupModule} from 'ng2-opd-popup';
@@ -29,7 +29,7 @@ const appRoutes = [
     BoardComponent,
     DashboardComponent,
     NavbarComponent,
-    NewListComponent,
+    // NewListComponent,
     EditAndDeleteCardComponent
   ],
   imports: [
