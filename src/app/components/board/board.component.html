@@ -1,32 +1,31 @@
-  <ng-template #changeCard let card="selectedCard" let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Card</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form (submit)="editCardFromModal()">
-                
-                        <div class="form-group">
-                            <label>Name</label>                                                          
-                            <input type="text" [(ngModel)]="selectedCard" name="selectedCard" class="form-control" placeholder="card">
-                        </div>
-                        <input type="submit" value="Submit" class="btn btn-success">
-              </form>
-              <button class="btn btn-danger" (click)=deleteCard()>Delete Card</button>
-          <!-- <p>One fine body&hellip;</p> -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-        </div>
-      </ng-template>
-      <button class="btn btn-primary btn-sm" (click)="openModal(changeCard)">Edit Card</button>
+<ng-template #changeCard let card="selectedCard" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Card</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (submit)="editCardFromModal()">
+            
+                    <div class="form-group">
+                        <label>Name</label>                                                          
+                        <input type="text" [(ngModel)]="selectedCard" name="selectedCard" class="form-control" placeholder="card">
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+            <button class="btn btn-danger" (click)=deleteCard()>Delete Card</button>
+        <!-- <p>One fine body&hellip;</p> -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+    </ng-template>
+    <!-- <button class="btn btn-primary btn-sm" (click)="openModal(changeCard)">Edit Card</button> -->
 <!-- create list -->
 <div *ngIf=showCreateListForm>
 
     <form (submit)="createList()">
-        
                 <div class="form-group">
                     <label>List</label>
                     <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="name">  
@@ -35,247 +34,80 @@
                 </div>
                 <input type="submit" value="Submit" class="btn btn-success">
       </form>
-
 </div>
 <button class="btn btn-primary" (click)="openCreateList()">Create List</button>
         
 
   
   <!-- add card -->
-  <ng-template #content let card="card" let-c="close" let-d="dismiss">
-      <div class="modal-header">
-        <h4 class="modal-title">New Card</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form (submit)="onSubmit()">
-              
-                      <div class="form-group">
-                          <label>Name</label>
-                            
-                          
-                          <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
-                      </div>
-                      <input type="submit" value="Create New Card" class="btn btn-success">
-            </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
-      </div>
-    </ng-template>
-
-
-  <!-- <button class="btn btn-success" (click)="getLists()">Get List</button> -->
-  
-  
-
-
-<!-- <div *ngIf="selectedList"> -->
-    <!-- <button class="btn btn-success" (click)="updateList(selectedList)">Update List</button> -->
-    <!-- <button class="btn btn-success" (click)="addCardToSelected()">Add Card to selected</button> -->
-<!-- </div> -->
-
-
-<!-- <div class="container py-3">
-  <div class="card view overlay hm-red-strong hoverable" *ngFor="let list of lists" style="width: 20rem;" (click)="selectList(list)">
-
-    <li class="row thumbnail">
-      <div class="col-md-4">
-        <div class="col-md-8 px-3">
-          <div class="card-block px-3 dark-hover">
-              <h4 class="card-title">{{list.name}}</h4>
-              <a href="#" data-toggle="tooltip" data-placement="top" title="Hooray!">{{list.name}}</a>
-              <p class="card-text">{{list.id}}</p>
-
-          </div>
-          <div class="card-block px-3" *ngFor="let card of list.cards" [class.selected]="card === selectedCard" (click)="selectCard(card)">
-              <h4 class="card-title">{{card}}</h4>
-          </div>
-        </div>
-      </div>
-      <ul>  </ul>
-    </li>
-
-  </div>
-</div> -->
-
-  <!-- <div class="app flex-row">    -->
-      <!-- <div class="container contain">  -->
+<ng-template #content let card="card" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+    <h4 class="modal-title">New Card</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <form (submit)="onSubmit()">
+            
+                    <div class="form-group">
+                        <label>Name</label>
+                        
+                        
+                        <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
+                    </div>
+                    <input type="submit" value="Create New Card" class="btn btn-success">
+        </form>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
 <br />
 
-<!-- <button class="btn btn-danger" (click)="toggleIsEdit(list)"></button> -->
+
 <br><br>
-            <h4>Move items between multi list sortable containers</h4>
-            <div class="board-container">
-                <div class="scrolling-wrapper-flexbox container" dnd-sortable-container [sortableData]="lists" [dropZones]="['container-dropZone']">
-
-                        <div class="container"
-                                *ngFor="let list of lists; let i = index"
-                                dnd-sortable [sortableIndex]="i" [dragData]="list" [dragEnabled]="!dragOperation" [class.listSelected]="list === selectedList"(click)="selectList(list)">
-                            <div class="card">
-
-                                <div class="card-block card-color"  dnd-sortable-container [sortableData]="list.cards" [dropZones]="['widget-dropZone']">
-                                    <div class="panel-heading">
-                                        {{list.id}} - {{list.name}}
-                                    </div>
-                                    <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
-                                                dnd-sortable [sortableIndex]="x" [dragEnabled]="!dragOperation"
-                                                [dragData]="card" contenteditable="false" [class.cardSelected]="card === selectedCard" (dblclick)="openModal(changeCard)" (click)="selectCard(card, x)" (keyup.enter)="editCard($event, card, x)" (blur)="editCard($event, card, x)" >
-                                                {{card}}        
-                                                <!-- <button type="button" class="close pull-right" aria-label="Close" (dblclick)="openModal(changeCard)">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button> -->
-                                                                                                                                                                                                                                        
-                                                <!-- <a class="close pull-right" type="button" (click)="deleteCard($event, card, x)">...</a> -->
-                                    </div> 
-                                    
-
-                                    <!-- <label *ngIf="!isEdit" (click)="isEdit=true" from="name">Name</label> -->                                   
-                                    <div class="card-footer">
-                                       <a (click)="addCardToSelected()">add card</a>
-                                       <button class="btn btn-primary btn-sm" (click)="open(content)">Add new card</button>
-                                    </div>    
-                                </div> 
-                                <div *ngIf="selectedList">
-                                        <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>      
-                                </div>                                                                 
-                                
-                                <div *ngIf="list.isEdit === true">
-                                    <button class="btn btn-warning" (click)="updateList(list)">Save List</button>
-                                </div>                                            
-
-                            </div>
-                            
-                                                                           
-                            
-                            
-                        </div>                        
-                    </div>
-                </div>
-                <!-- <div class="col-sm-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">Widgets</div>
-                        <div class="panel-body" dnd-droppable (onDropSuccess)="addTo($event)" [dropZones]="['widget-dropZone']">
-                            <div *ngFor="let widget of widgets" class="panel panel-default">
-                                <div class="panel-body">
-                                    {{widget.name}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-      <!-- </div> -->
-  <!-- </div> -->
-  <!-- </div> -->
-  
-
-    <!-- <body ng-app="ImageDemo">
-        <div ng-controller="Demo.controller">
-          <div>
-            <ul id="navlist">
-              <li ng-repeat="i in product.images">
-                <img class="thumbnail" ng-src="{{i.image}}"> 
-              </li>
-            </ul>
-          </div>
-        </div>
-      </body> -->
+<h4>Notes about the app</h4>
+<ul>
+    <li>Double Click on cards to edit</li>
+    <li>After Editing a list or a card in a list be sure to select the list and click save</li>
+    <li>Double Click to edit A Card</li>
+</ul>
 
 
-
-
-
-<!-- 
-<ul class="lists">
-    <li *ngFor="let list of lists" [class.selected]="list === selectedList" (click)="selectList(list)">
-        <span class="badge">{{list.name}}</span>{{list.name}}
-    </li>
-  </ul> -->
-<!-- [class.selected]="list === selectedList"  -->
-
-<!-- good area  below-->
-
-<!-- <div class="card-deck card-colomns scrolling-wrapper-flexbox contain">
-    <div class="card col-md-3" *ngFor="let list of lists" [class.listSelected]="list === selectedList"(click)="selectList(list)">
-        <div class="card-block card-color">
-            <h4 class="card-title">Name: {{list.name}} </h4>
-            <p class="card-text"> {{list.id}}</p>
-            <div class="card-block px-3" *ngFor="let card of list.cards" [class.cardSelected]="card === selectedCard && list === selectedList" (click)="selectCard(card)">
-                   <h4 class="card-title">{{card}}</h4>
-            </div>
-            <div class="card-footer">
-                Link
-            </div>    
-            
-        </div>
-
-      <br />    
-    </div>
-    <br />
-</div> -->
-
-
-
-<!-- close -->
-
-<!-- <h4>Move items between multi list sortable containers</h4>
 <div class="board-container">
-    <div class="scrolling-wrapper-flexbox">
-        Drag Containers <input type="checkbox" [(ngModel)]="dragOperation"/>
-        <div class="container" dnd-sortable-container [sortableData]="lists" [dropZones]="['container-dropZone']">
+    <div class="scrolling-wrapper-flexbox container" dnd-sortable-container [sortableData]="lists" [dropZones]="['container-dropZone']">
+
             <div class="container"
                     *ngFor="let list of lists; let i = index"
-                    dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
+                    dnd-sortable [sortableIndex]="i" [dragData]="list" [dragEnabled]="!dragOperation" [class.listSelected]="list === selectedList"(click)="selectList(list)">
                 <div class="card">
+
                     <div class="card-block card-color"  dnd-sortable-container [sortableData]="list.cards" [dropZones]="['widget-dropZone']">
                         <div class="panel-heading">
                             {{list.id}} - {{list.name}}
                         </div>
-                          <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
+                        <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
                                     dnd-sortable [sortableIndex]="x" [dragEnabled]="!dragOperation"
-                                    [dragData]="card">{{card}}
-                          </div> 
+                                    [dragData]="card" contenteditable="false" [class.cardSelected]="card === selectedCard" (dblclick)="openModal(changeCard)" (click)="selectCard(card, x)" (keyup.enter)="editCard($event, card, x)" (blur)="editCard($event, card, x)" >
+                                    {{card}}        
 
-
+                        </div>                             
+                        <div class="card-footer">
+                            <a (click)="addCardToSelected()">add card</a>
+                            <button class="btn btn-primary btn-sm" (click)="open(content)">Add new card</button>
+                        </div>    
+                    </div> 
+                    <div *ngIf="selectedList">
+                            <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>      
+                    </div>                                                                 
+                    
+                    <div *ngIf="list.isEdit === true">
+                        <button class="btn btn-warning" (click)="updateList(list)">Save List</button>
+                    </div>                                            
 
                 </div>
-                  
-                    
-                    
-                </div>
-            </div>
+            </div>                        
         </div>
-    </div> -->
-<!-- OLD
-    <div class="board-container">
-        
-                      <div class="scrolling-wrapper-flexbox">
-                          <div class="container" *ngFor="let list of lists" [class.listSelected]="list === selectedList"(click)="selectList(list)">
-                            <div class="card">  
-                              <div class="card-block card-color">
-                                  <h4 class="card-title">Name: {{list.name}} </h4>
-                                  <p class="card-text"> {{list.id}}</p>
-                                  <div droppable draggable class="card-block px-3" *ngFor="let card of list.cards" [dragData]="[card, list.id]" 
-                                  (onDrop)="onItemDrop($event)" [class.cardSelected]="card === selectedCard && list === selectedList" (click)="selectCard(card)">
-                                         <h4 class="card-title">{{card}}</h4>
-                                  </div>
-                                  <div class="card-footer">
-                                      Link
-                                  </div>    
-                                  
-                              </div>
-                            </div>    
-                            <br />    
-                          </div>
-                          <br />
-                      </div>
-                  </div>
-     -->
-
-     <!-- (input)="onRowClick($event, card)" (keyup.enter)=addCardToSelected(card) -->
-
-     <!-- (keyup.enter)="onRowClick($event, card, x)" -->
+    </div>
+ 

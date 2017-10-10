@@ -2,9 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ListsService } from '../../services/lists.service';
 import { List } from '../../models/list';
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-// import { Container} from '../../models/container';
-// import { Widget } from '../../models/widget';
-// import {NewListComponent} from '../new-list/new-list.component';
 
 
 @Component({
@@ -20,7 +17,6 @@ export class BoardComponent implements OnInit {
   lists: Array<List>;
   list: List;
   selectedList: List;
-  // prevSelectedList: List;
   selectedCard: any;
 
   dropped: any;
@@ -34,8 +30,6 @@ export class BoardComponent implements OnInit {
   showCreateListForm: boolean = false;
   cardEdits: any;
   cardPosition: number;
-
-  // public newList: NewListComponent;
 
   dragOperation: boolean = false;
 
@@ -73,7 +67,6 @@ export class BoardComponent implements OnInit {
   }
 
   addCardToSelected(card) {
-    // const card = 'new card';
     console.log(card);
     this.selectedList.cards.push(card);
     this.selectedList.isEdit = true;
@@ -116,7 +109,6 @@ export class BoardComponent implements OnInit {
         console.log(res);
         this.getList(list.id);
       });
-      // this.getList(list.id);
       this.selectedList.isEdit = false;
       console.log('just tried to update list');
     }
@@ -126,10 +118,8 @@ export class BoardComponent implements OnInit {
         console.log(res);
         this.getLists();
       });
-      // this.getLists();
       console.log('just called delete list');
     }
-
 
     getList(id) {
       this.svc.getList(id).subscribe((res) => {
@@ -144,23 +134,15 @@ export class BoardComponent implements OnInit {
       console.log(this.selectedCard);
     }
 
-
     onItemDrop(e: any) {
       // Get the dropped data here
-      console.log(e.dragData.id);
-      console.log(e.dragData.card);
-      console.log(JSON.stringify(e.dragData[0]));
       this.addCardToSelected(e.dragData[0]);
       console.log('just droped card');
-
   }
 
   editCard(event, id, index) {
-    console.log(event.target.outerText, id, index);
     this.selectedList.cards[index] = event.target.outerText;
     this.selectedList.isEdit = true;
-    // console.log('whut');
-    console.log(this.selectedList);
     this.isEdit = true;
   }
 
@@ -168,24 +150,16 @@ export class BoardComponent implements OnInit {
   editCardFromModal() {
     console.log(this.selectedCard);
     this.modalRef2.close();
-
-    // console.log(event.target.outerText, id, index);
     this.selectedList.cards[this.cardPosition] = this.selectedCard;
     this.selectedList.isEdit = true;
-    // this.selectedList.isEdit = true;
-    // // console.log('whut');
-    // console.log(this.selectedList);
-    // this.isEdit = true;
   }
 
   deleteCard() {
     this.selectedList.cards.splice(this.cardPosition, 1);
-    this.selectedList.isEdit = true; //turns on the save button 
+    this.selectedList.isEdit = true; // turns on the save button
     this.modalRef2.close();
 
   }
-
-
 
   addTo($event: any) {
           if ($event) {
