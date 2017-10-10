@@ -1,0 +1,90 @@
+Arguments: 
+  /Users/mikecarl/.nvm/versions/node/v8.4.0/bin/node /Users/mikecarl/.nvm/versions/node/v8.4.0/bin/yarn add @angular/flex-layout-builds --save
+
+PATH: 
+  /Library/Frameworks/Python.framework/Versions/3.5/bin:/Users/mikecarl/.rvm/gems/ruby-2.2.1/bin:/Users/mikecarl/.rvm/gems/ruby-2.2.1@global/bin:/Users/mikecarl/.rvm/rubies/ruby-2.2.1/bin:/Users/mikecarl/.nvm/versions/node/v8.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mikecarl/.rvm/bin
+
+Yarn version: 
+  1.1.0
+
+Node version: 
+  8.4.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "horizons",
+    "version": "0.0.0",
+    "license": "MIT",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build && node server.js",
+      "test": "ng test",
+      "lint": "ng lint",
+      "e2e": "ng e2e"
+    },
+    "private": true,
+    "dependencies": {
+      "@angular/animations": "^4.2.4",
+      "@angular/common": "^4.2.4",
+      "@angular/compiler": "^4.2.4",
+      "@angular/core": "^4.2.4",
+      "@angular/forms": "^4.2.4",
+      "@angular/http": "^4.2.4",
+      "@angular/platform-browser": "^4.2.4",
+      "@angular/platform-browser-dynamic": "^4.2.4",
+      "@angular/router": "^4.2.4",
+      "body-parser": "^1.18.2",
+      "bootstrap": "^4.0.0-alpha.6",
+      "core-js": "^2.4.1",
+      "express": "^4.16.1",
+      "rxjs": "^5.4.2",
+      "zone.js": "^0.8.14",
+      "express-handlebars": "3.0.0",
+      "underscore": "1.8.3"
+    },
+    "devDependencies": {
+      "@angular/cli": "1.4.1",
+      "@angular/compiler-cli": "^4.2.4",
+      "@angular/language-service": "^4.2.4",
+      "@types/jasmine": "~2.5.53",
+      "@types/jasminewd2": "~2.0.2",
+      "@types/node": "~6.0.60",
+      "codelyzer": "~3.1.1",
+      "jasmine-core": "~2.6.2",
+      "jasmine-spec-reporter": "~4.1.0",
+      "karma": "~1.7.0",
+      "karma-chrome-launcher": "~2.1.1",
+      "karma-cli": "~1.0.1",
+      "karma-coverage-istanbul-reporter": "^1.2.1",
+      "karma-jasmine": "~1.1.0",
+      "karma-jasmine-html-reporter": "^0.2.2",
+      "protractor": "~5.1.2",
+      "ts-node": "~3.2.0",
+      "tslint": "~5.3.2",
+      "typescript": "~2.3.3",
+      "rimraf": "2.5.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@angular%2fflex-layout-builds: Not found
+      at Request.params.callback [as _callback] (/Users/mikecarl/.nvm/versions/node/v8.4.0/lib/node_modules/yarn/lib/cli.js:61779:18)
+      at Request.self.callback (/Users/mikecarl/.nvm/versions/node/v8.4.0/lib/node_modules/yarn/lib/cli.js:121917:22)
+      at emitTwo (events.js:125:13)
+      at Request.emit (events.js:213:7)
+      at Request.<anonymous> (/Users/mikecarl/.nvm/versions/node/v8.4.0/lib/node_modules/yarn/lib/cli.js:122900:10)
+      at emitOne (events.js:115:13)
+      at Request.emit (events.js:210:7)
+      at IncomingMessage.<anonymous> (/Users/mikecarl/.nvm/versions/node/v8.4.0/lib/node_modules/yarn/lib/cli.js:122820:12)
+      at Object.onceWrapper (events.js:314:30)
+      at emitNone (events.js:110:20)

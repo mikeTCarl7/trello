@@ -111,8 +111,4 @@ listApiRouter.delete('/:id', function (req, resp, next) {
 
 })
 
-// listApiRouter.post('/:id', function(req, resp, next) {
-
-// }
-
 module.exports = listApiRouter;

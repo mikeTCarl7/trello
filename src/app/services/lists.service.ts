@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-
-// import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { List } from '../models/list';
@@ -16,8 +13,7 @@ export class ListsService {
 
 
   private extractData(res: Response) {
-    let body = res.json();
-    // console.log(body.data);
+    const body = res.json();
           return body.data || {};
       }
   private handleErrorObservable (error: Response | any) {
@@ -31,7 +27,7 @@ export class ListsService {
     });
   }
 
-  getList(id) : Observable<any> {
+  getList(id): Observable<any> {
     return this.http.get('http://localhost:3000/api/lists/' + id).map((res) => {
       console.log('single list' + res.json());
       return res.json();
@@ -42,6 +38,7 @@ export class ListsService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     const input = JSON.stringify(list);
+    // constant below is to trim unneaded properties prior to the api call
     const obj: any = {
         name: list.name,
         pos: list.pos,
@@ -51,23 +48,11 @@ export class ListsService {
       return this.http.post('http://localhost:3000/api/lists/' + list.id, input, options);
     }
 
-  createList() {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    // console.log(list.rows[0]);
-    let n = 'mike';
-    let p = 2;
-    const obj: any = {name: n,
-      pos: p,
-      cards: ['card1', 'card2']
-    };
+  createList(obj) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
-    let input = JSON.stringify(obj);
-
-    console.log();
-    let me1 = '{"name":"Hello","pos":1,"cards":["Card 1","Card 2"]}';
-    let me = '{"rows":[{"name":"Hello","pos":1,"cards":["Card 1","Card 2"]]}';
-    // console.log(JSON.stringify(obj) + ' is the object value');
+    const input = JSON.stringify(obj);
       return this.http.post('http://localhost:3000/api/lists', input, options)
       .map(this.extractData)
       .catch(this.handleErrorObservable);

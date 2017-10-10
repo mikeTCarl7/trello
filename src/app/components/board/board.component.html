@@ -1,0 +1,113 @@
+<ng-template #changeCard let card="selectedCard" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Card</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (submit)="editCardFromModal()">
+            
+                    <div class="form-group">
+                        <label>Name</label>                                                          
+                        <input type="text" [(ngModel)]="selectedCard" name="selectedCard" class="form-control" placeholder="card">
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+            <button class="btn btn-danger" (click)=deleteCard()>Delete Card</button>
+        <!-- <p>One fine body&hellip;</p> -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+    </ng-template>
+    <!-- <button class="btn btn-primary btn-sm" (click)="openModal(changeCard)">Edit Card</button> -->
+<!-- create list -->
+<div *ngIf=showCreateListForm>
+
+    <form (submit)="createList()">
+                <div class="form-group">
+                    <label>List</label>
+                    <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="name">  
+                    <input type="text" [(ngModel)]="position" name="position" class="form-control" placeholder="position">  
+                    <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
+                </div>
+                <input type="submit" value="Submit" class="btn btn-success">
+      </form>
+</div>
+<button class="btn btn-primary" (click)="openCreateList()">Create List</button>
+        
+
+  
+  <!-- add card -->
+<ng-template #content let card="card" let-c="close" let-d="dismiss">
+    <div class="modal-header">
+    <h4 class="modal-title">New Card</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <form (submit)="onSubmit()">
+            
+                    <div class="form-group">
+                        <label>Name</label>
+                        
+                        
+                        <input type="text" [(ngModel)]="card" name="card" class="form-control" placeholder="card">
+                    </div>
+                    <input type="submit" value="Create New Card" class="btn btn-success">
+        </form>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-outline-light" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<br />
+
+
+<br><br>
+<h4>Notes about the app</h4>
+<ul>
+    <li>Double Click on cards to edit</li>
+    <li>After Editing a list or a card in a list be sure to select the list and click save</li>
+    <li>Double Click to edit A Card</li>
+</ul>
+
+
+<div class="board-container">
+    <div class="scrolling-wrapper-flexbox container" dnd-sortable-container [sortableData]="lists" [dropZones]="['container-dropZone']">
+
+            <div class="container"
+                    *ngFor="let list of lists; let i = index"
+                    dnd-sortable [sortableIndex]="i" [dragData]="list" [dragEnabled]="!dragOperation" [class.listSelected]="list === selectedList"(click)="selectList(list)">
+                <div class="card">
+
+                    <div class="card-block card-color"  dnd-sortable-container [sortableData]="list.cards" [dropZones]="['widget-dropZone']">
+                        <div class="panel-heading">
+                            {{list.id}} - {{list.name}}
+                        </div>
+                        <div class="card-block px-3" *ngFor="let card of list.cards; let x = index" class="list-group-item"
+                                    dnd-sortable [sortableIndex]="x" [dragEnabled]="!dragOperation"
+                                    [dragData]="card" contenteditable="false" [class.cardSelected]="card === selectedCard" (dblclick)="openModal(changeCard)" (click)="selectCard(card, x)" (keyup.enter)="editCard($event, card, x)" (blur)="editCard($event, card, x)" >
+                                    {{card}}        
+
+                        </div>                             
+                        <div class="card-footer">
+                            <a (click)="addCardToSelected()">add card</a>
+                            <button class="btn btn-primary btn-sm" (click)="open(content)">Add new card</button>
+                        </div>    
+                    </div> 
+                    <div *ngIf="selectedList">
+                            <button [hidden]="(selectedList.id !== list.id)" class="btn btn-danger btn-small" (click)="deleteList(selectedList.id)">Delete List</button>      
+                    </div>                                                                 
+                    
+                    <div *ngIf="list.isEdit === true">
+                        <button class="btn btn-warning" (click)="updateList(list)">Save List</button>
+                    </div>                                            
+
+                </div>
+            </div>                        
+        </div>
+    </div>
+ 

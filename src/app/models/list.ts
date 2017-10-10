@@ -4,6 +4,14 @@ export class List {
         pos: number;
         cards: Array<any>;
         id: number;
-        constructor() {}
+        isEdit: boolean;
+        constructor() {
+            this.isEdit = false;
+        }
 
     }
+
+
+
+
+
