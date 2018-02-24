@@ -73,6 +73,17 @@ listApiRouter.get('/:id', function(req, resp, next) {
     }
 });
 
+listApiRouter.get('/osha', function(req, resp, next){
+console.log('this got called');
+var result = storage.getOne('list', parseInt(0));
+    if (result) {
+      resp.json(result);
+    } else {
+      resp.status(404).end();
+    }
+
+});
+
 // POST /api/lists create new list
 listApiRouter.post('/', function(req, resp, next) {
   var fields = getFields(LIST_FIELDS, req.body);
