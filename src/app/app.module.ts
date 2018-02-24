@@ -15,6 +15,8 @@ import { HelloWorldComponent } from './components/hello-world/hello-world.compon
 import { PlaygroundComponent } from './components/playground/playground.component';
 
 
+import { OshaService } from './services/osha.service';
+
 
 const appRoutes = [
   {path: '', component: DashboardComponent},
@@ -39,7 +41,7 @@ const appRoutes = [
     NgbModule.forRoot()
 
   ],
-  providers: [ListsService],
+  providers: [ListsService, OshaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

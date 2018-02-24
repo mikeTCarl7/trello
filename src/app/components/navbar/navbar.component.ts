@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-
+import {OshaService} from '../../services/osha.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private svc: OshaService) {
+    // this.svc.alertOthers();
+    // console.log('we are here');
+   }
 
   ngOnInit() {
+  }
+  alertOthers() {
+    this.svc.alertOthers().subscribe(res => console.log(res));
   }
 
 }

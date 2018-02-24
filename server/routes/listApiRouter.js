@@ -54,6 +54,18 @@ function getFields(entity, obj) {
 
 // GET /api/lists Get all lists
 listApiRouter.get('/', function(req, resp, next) {
+  
+  // var client = require('twilio')(
+  //   'ACb27c1831f8a5e1593d10e9c93ec10ec6',
+  //   'eb77c0be4364d27a8406505aff6f9b6a'
+  // );
+  
+  
+  // client.messages.create({
+  //   from: 12169254386,
+  //   to: 2164077102,
+  //   body: "Sup dude!! OSHA IS ON THE JOB SITE"
+  // }).then((message) => console.log(message.sid));
   var result = storage.getAll('list');
   if (result) {
     resp.json({ rows: result });
@@ -69,7 +81,7 @@ listApiRouter.get('/:id', function(req, resp, next) {
     if (result) {
       resp.json(result);
     } else {
-      resp.status(404).end();
+      resp.status(404).end();sa
     }
 });
 
