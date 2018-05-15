@@ -11,8 +11,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {DndModule} from 'ng2-dnd';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HelloWorldComponent } from './components/hello-world/hello-world.component';
-import { PlaygroundComponent } from './components/playground/playground.component';
 
 
 
@@ -26,9 +24,7 @@ const appRoutes = [
     AppComponent,
     BoardComponent,
     DashboardComponent,
-    NavbarComponent,
-    HelloWorldComponent,
-    PlaygroundComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
