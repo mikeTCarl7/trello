@@ -35,7 +35,7 @@
     "ng2-flex-layout": "^0.1.5",
     "rxjs": "^5.4.2",
     "twilio": "^3.11.0",
-    "underscore": "1.8.3",
+    "underscore": "1.12.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
